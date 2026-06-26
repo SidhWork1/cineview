@@ -1,3 +1,5 @@
+import { collectionStore } from '../../../Collection/data'
+
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react-lite'
@@ -31,13 +33,13 @@ const Navbar = observer(() => {
 
         {/* Nav Links */}
         <div className="flex items-center gap-6">
-          {NAV_LINKS.map((link) => (
+        {NAV_LINKS.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
               end={link.path === '/'}
               className={({ isActive }) =>
-                `text-sm font-medium transition-colors ${
+                `text-sm font-medium transition-colors relative ${
                   isActive
                     ? 'text-white'
                     : 'text-white/50 hover:text-white'
@@ -45,8 +47,13 @@ const Navbar = observer(() => {
               }
             >
               {link.label}
+              {link.path === '/watchlist' && collectionStore.watchlistCount > 0 && (
+                <span className="absolute -top-2 -right-3 bg-purple-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  {collectionStore.watchlistCount}
+                </span>
+              )}
             </NavLink>
-          ))}
+        ))}
         </div>
 
         {/* Logout */}

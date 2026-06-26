@@ -1,3 +1,6 @@
+import { observer } from 'mobx-react-lite'
+import { collectionStore } from '../../../Collection/data'
+
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import CastCarousel from '../CastCarousel'
@@ -17,7 +20,7 @@ import {
 import { TMDB_IMAGE_BASE_URL, IMAGE_SIZES } from '../../../Common/constants'
 import type { MovieDetail, CastMember, Video, Movie } from '../../core'
 
-const MovieDetailPage = () => {
+const MovieDetailPage = observer(() => {
   const { id } = useParams<{ id: string }>()
 
   const [movie, setMovie] = useState<MovieDetail | null>(null)
@@ -97,6 +100,24 @@ const MovieDetailPage = () => {
   const trailerKey = videos.find(
     (v) => v.site === 'YouTube' && v.type === 'Trailer'
   )?.key
+
+  const isInWatchlist = collectionStore.isInWatchlist(Number(id), 'movie')
+
+  const handleToggleWatchlist = () => {
+    if (!movie) return
+    if (isInWatchlist) {
+      collectionStore.removeFromWatchlist(movie.id, 'movie')
+    } else {
+      collectionStore.addToWatchlist(
+        movie.id,
+        'movie',
+        movie.title,
+        movie.poster_path,
+        movie.vote_average
+      )
+    }
+  }
+
 
   if (loading) {
     return (
@@ -203,8 +224,15 @@ const MovieDetailPage = () => {
                   ▶ Watch Trailer
                 </button>
               )}
-              <button className="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors">
-                + Watchlist
+              <button
+                onClick={handleToggleWatchlist}
+                className={`px-6 py-2.5 text-white text-sm font-medium rounded-lg transition-colors ${
+                  isInWatchlist
+                    ? 'bg-purple-600 hover:bg-purple-700'
+                    : 'bg-white/10 hover:bg-white/20'
+                }`}
+              >
+                {isInWatchlist? '♥ In Watchlist' : '+ Watchlist'}
               </button>
             </div>
           </div>
@@ -252,6 +280,6 @@ const MovieDetailPage = () => {
       )}
     </div>
   )
-}
+})
 
 export default MovieDetailPage

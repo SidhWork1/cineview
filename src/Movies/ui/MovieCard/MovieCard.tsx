@@ -1,18 +1,36 @@
 import { Link } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 import ImageWithFallback from '../../../Common/components/ImageWithFallback'
 import { TMDB_IMAGE_BASE_URL, IMAGE_SIZES } from '../../../Common/constants'
+import { collectionStore } from '../../../Collection/data'
 import type { Movie } from '../../core'
 
 interface MovieCardProps {
   movie: Movie
-  isInWatchlist?: boolean
-  onToggleWatchlist?: () => void
 }
 
-const MovieCard = ({ movie, isInWatchlist = false, onToggleWatchlist }: MovieCardProps) => {
+const MovieCard = observer(({ movie }: MovieCardProps) => {
   const posterUrl = movie.poster_path
     ? `${TMDB_IMAGE_BASE_URL}${IMAGE_SIZES.poster.medium}${movie.poster_path}`
     : null
+
+  const isInWatchlist = collectionStore.isInWatchlist(movie.id, 'movie')
+
+  const handleToggleWatchlist = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (isInWatchlist) {
+      collectionStore.removeFromWatchlist(movie.id, 'movie')
+    } else {
+      collectionStore.addToWatchlist(
+        movie.id,
+        'movie',
+        movie.title,
+        movie.poster_path,
+        movie.vote_average
+      )
+    }
+  }
 
   return (
     <div className="relative flex-shrink-0 w-36 md:w-44 group">
@@ -37,7 +55,7 @@ const MovieCard = ({ movie, isInWatchlist = false, onToggleWatchlist }: MovieCar
 
       {/* Watchlist Toggle */}
       <button
-        onClick={onToggleWatchlist}
+        onClick={handleToggleWatchlist}
         className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
       >
         <span className={`text-sm ${isInWatchlist ? 'text-purple-400' : 'text-white/60'}`}>
@@ -46,6 +64,6 @@ const MovieCard = ({ movie, isInWatchlist = false, onToggleWatchlist }: MovieCar
       </button>
     </div>
   )
-}
+})
 
 export default MovieCard
