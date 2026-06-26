@@ -1,0 +1,16 @@
+{
+    "home": {
+      "trending": "Trending Today",
+      "popular": "Popular Movies",
+      "topRated": "Top Rated Movies",
+      "upcoming": "Upcoming Movies",
+      "nothingToShow": "Nothing to show here."
+    },
+    "detail": {
+      "topCast": "Top Cast",
+      "similar": "Similar Movies",
+      "recommended": "Recommended for You",
+      "notFound": "Movie not found.",
+      "goBack": "Go back home"
+    }
+  }

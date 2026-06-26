@@ -1,0 +1,10 @@
+{
+    "title": "My Watchlist",
+    "empty": "Your watchlist is empty.",
+    "status": {
+      "all": "All",
+      "wantToWatch": "Want to Watch",
+      "watching": "Watching",
+      "completed": "Completed"
+    }
+  }

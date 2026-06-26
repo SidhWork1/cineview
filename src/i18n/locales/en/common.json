@@ -1,0 +1,28 @@
+{
+    "nav": {
+      "home": "Home",
+      "search": "Search",
+      "watchlist": "Watchlist",
+      "lists": "Lists",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "footer": {
+      "dataBy": "Data provided by TMDB.",
+      "about": "About",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "contact": "Contact"
+    },
+    "errors": {
+      "generic": "Something went wrong. Please try again.",
+      "notFound": "Page not found",
+      "goHome": "Go Home"
+    },
+    "actions": {
+      "watchTrailer": "Watch Trailer",
+      "addWatchlist": "+ Watchlist",
+      "signIn": "Sign In",
+      "logout": "Logout"
+    }
+  }

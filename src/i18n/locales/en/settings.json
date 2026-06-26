@@ -1,0 +1,19 @@
+{
+    "title": "Settings",
+    "subtitle": "Customize your cinematic discovery experience.",
+    "preferences": "Preferences",
+    "language": "UI & Content Language",
+    "region": "Region",
+    "appearance": "Appearance",
+    "appearanceSubtitle": "Switch between light and dark themes.",
+    "light": "Light",
+    "dark": "Dark",
+    "collection": "Collection Maintenance",
+    "clearWatchlist": "Clear Watchlist",
+    "clearWatchlistDesc": "Remove all saved movies and shows from your watchlist forever.",
+    "clearWatchlistBtn": "Clear All Watchlist",
+    "resetApp": "Reset Application",
+    "resetAppDesc": "Wipes all cached data, settings, and preferences to factory defaults.",
+    "resetAppBtn": "Reset Application",
+    "storageNote": "All settings are securely persisted in your browser's localStorage and will remain active until paused."
+  }

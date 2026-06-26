@@ -1,16 +1,19 @@
 import { NavLink, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { observer } from 'mobx-react-lite'
 import { clearSession } from '../../../Auth/data'
 
-const NAV_LINKS = [
-  { label: 'Home', path: '/' },
-  { label: 'Search', path: '/search' },
-  { label: 'Watchlist', path: '/watchlist' },
-  { label: 'Lists', path: '/lists' },
-  { label: 'Settings', path: '/settings' },
-]
-
-const Navbar = () => {
+const Navbar = observer(() => {
   const navigate = useNavigate()
+  const { t } = useTranslation('common')
+
+  const NAV_LINKS = [
+    { label: t('nav.home'), path: '/' },
+    { label: t('nav.search'), path: '/search' },
+    { label: t('nav.watchlist'), path: '/watchlist' },
+    { label: t('nav.lists'), path: '/lists' },
+    { label: t('nav.settings'), path: '/settings' },
+  ]
 
   const handleLogout = () => {
     clearSession()
@@ -51,12 +54,12 @@ const Navbar = () => {
           onClick={handleLogout}
           className="text-sm text-white/50 hover:text-white transition-colors"
         >
-          Logout
+          {t('nav.logout')}
         </button>
 
       </div>
     </nav>
   )
-}
+})
 
 export default Navbar

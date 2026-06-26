@@ -4,7 +4,7 @@ import Footer from '../../../Common/components/Footer'
 
 const ShellLayout = () => {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="shell-bg min-h-screen">
       <Navbar />
       <main className="pt-16">
         <Outlet />
