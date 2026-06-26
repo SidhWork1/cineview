@@ -48,10 +48,12 @@ const router = createBrowserRouter([
       {
         path: 'tv/:id',
         element: <TVShowDetailPage />,
-      },
-      {
-        path: 'tv/:id/season/:seasonNumber',
-        element: <SeasonDetailPage />,
+        children: [
+          {
+            path: 'season/:seasonNumber',
+            element: <SeasonDetailPage />,
+          },
+        ],
       },
       {
         path: 'search',

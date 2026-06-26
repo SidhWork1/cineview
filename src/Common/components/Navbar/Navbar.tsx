@@ -3,6 +3,7 @@ import { clearSession } from '../../../Auth/data'
 
 const NAV_LINKS = [
   { label: 'Home', path: '/' },
+  { label: 'Search', path: '/search' },
   { label: 'Watchlist', path: '/watchlist' },
   { label: 'Lists', path: '/lists' },
   { label: 'Settings', path: '/settings' },
