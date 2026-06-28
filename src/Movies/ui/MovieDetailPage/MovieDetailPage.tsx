@@ -1,3 +1,4 @@
+import AddToListPopover from '../../../Collection/ui/AddToListPopover'
 import { observer } from 'mobx-react-lite'
 import { collectionStore } from '../../../Collection/data'
 
@@ -215,7 +216,7 @@ const MovieDetailPage = observer(() => {
             </p>
 
             {/* Buttons */}
-            <div className="flex gap-3">
+            <div className="flex gap-3 flex-wrap">
               {trailerKey && (
                 <button
                   onClick={() => setShowTrailer(true)}
@@ -232,8 +233,17 @@ const MovieDetailPage = observer(() => {
                     : 'bg-white/10 hover:bg-white/20'
                 }`}
               >
-                {isInWatchlist? '♥ In Watchlist' : '+ Watchlist'}
+                {isInWatchlist ? '♥ In Watchlist' : '+ Watchlist'}
               </button>
+              {movie && (
+                <AddToListPopover
+                  mediaId={movie.id}
+                  mediaType="movie"
+                  title={movie.title}
+                  posterPath={movie.poster_path}
+                  rating={movie.vote_average}
+                />
+              )}
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import AddToListPopover from '../../../Collection/ui/AddToListPopover'
 import { useState, useEffect } from 'react'
 import { useParams, Link, Outlet, useNavigate } from 'react-router-dom'
 import ImageWithFallback from '../../../Common/components/ImageWithFallback'
@@ -130,9 +131,18 @@ const TVShowDetailPage = () => {
               {show.overview}
             </p>
 
-            <button className="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors">
-              + Watchlist
-            </button>
+            <div className="flex gap-3 flex-wrap">
+              <button className="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors">
+                + Watchlist
+              </button>
+              <AddToListPopover
+                mediaId={show.id}
+                mediaType="tv"
+                title={show.name}
+                posterPath={show.poster_path}
+                rating={show.vote_average}
+              />
+            </div>
           </div>
         </div>
 
